@@ -23,6 +23,12 @@ const FormTarea = () => {
     setTarea("");
   };
 
+  const borrarTarea = (nombre) =>{
+    // funcion para eliminar un item del state listatareas
+    let arregloFiltrado = listaTareas.filter((elemento)=> elemento !== nombre) 
+    setListaTareas(arregloFiltrado);
+  }
+
   return (
     //   aqui tambien puedo agregar js
     <div className="container my-5">
@@ -42,7 +48,7 @@ const FormTarea = () => {
         </div>
       </form>
       <article className="my-5">
-        <Lista></Lista>
+        <Lista arregloTareas={listaTareas} borrarTarea={borrarTarea}></Lista>
       </article>
     </div>
   );
