@@ -1,11 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Lista from "./Lista";
 
 const FormTarea = () => {
   // aqui escribo codigo de js
+  
+  let tareasLS= JSON.parse(localStorage.getItem('listaTareas'));
   // vamos a crear 2 state
   const [tarea, setTarea] = useState("");
-  const [listaTareas, setListaTareas] = useState([]);
+  const [listaTareas, setListaTareas] = useState(tareasLS);
+
+  // uso useeffect solo en el montaje
+  // useEffect(()=>{
+  //   // aqui va la logica a ejecutar
+  //   console.log('ejecutando el ciclo de vida de un componente');
+  // },[]);
+
+  useEffect(()=>{
+    // aqui va la logica a ejecutar
+    if(tareasLS){
+      console.log('aqui quiero actualizar el localstorage');
+      localStorage.setItem('listaTareas', JSON.stringify(listaTareas));
+    }else{
+      console.log('en localstorage no existe la key listatareas');
+      localStorage.setItem('listaTareas', JSON.stringify([]));
+    }
+  });
 
   // const guardarTarea = (e) =>{
   //     // console.log(e.target.value);
